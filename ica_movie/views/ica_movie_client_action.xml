@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.actions.client" id="ica_movie_action">
+        <field name="name">Movies</field>
+        <field name="tag">ica_movie.movieAction</field>
+    </record>
+    <!-- This Menu Item will appear in the Upper bar, That's why It needs NO parent or action -->
+    <menuitem id="ica_movie_root" name="ICA" sequence="0">
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="movie_category" name="Movie" action="ica_movie_action" sequence="0"/>
+    </menuitem>
+</odoo>
