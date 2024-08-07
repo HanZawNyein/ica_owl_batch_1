@@ -2,28 +2,54 @@
 <templates xml:space="preserve">
     <t t-name="ica_movie.icaMovie">
         <div class="container">
-            <h1 class="container m-5">Welcome From Movies!</h1>
-            <div class="d-flex justify-content-between">
-                <input type="text" class="form-control"/>
-                <button class="btn btn-primary" t-on-click="getAllPartners">Click Me</button>
+            <h1 class="mt-5 mb-5">Welcome From Movies!</h1>
+            <div class="d-flex justify-content-between mb-2 mt-2">
+                <input t-ref="name" type="text" class="form-control" t-on-keyup="(e)=>this.searchPartners(e)"/>
+                <button class="btn btn-primary oi oi-search" t-on-click="searchPartners"/>
             </div>
             <div style="max-height: 500px; overflow-y: auto;">
                 <table class="table">
-                    <thead>
+                    <thead class="sticky-top bg-dark text-white">
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Handle</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         <t t-foreach="state.partners" t-as="partner" t-key="partner.id">
                             <tr>
                                 <th scope="row"><span t-esc="partner_index+1"/></th>
-                                <td><span t-esc="partner.name"/></td>
-                                <td><span t-esc="partner.id"/></td>
-                                <td>@mdo</td>
+                                <td>
+                                    <t t-if="partner.name">
+                                        <span t-esc="partner.name"/>
+                                    </t>
+                                    <t t-else="">
+                                        <span>-</span>
+                                    </t>
+                                </td>
+                                <td>
+                                    <t t-if="partner.phone">
+                                        <span t-esc="partner.phone"/>
+                                    </t>
+                                    <t t-else="">
+                                        <span>-</span>
+                                    </t>
+                                </td>
+                                <td>
+                                    <t t-if="partner.email">
+                                        <span t-esc="partner.email"/>
+                                    </t>
+                                    <t t-else="">
+                                        <span>-</span>
+                                    </t>
+                                </td>
+                                <td>
+                                    <button class="btn btn-warning m-2" t-on-click="()=>this.updatePartner(partner)">Update</button>
+                                    <button class="btn btn-danger m-2" t-on-click="()=>this.deletePartner(partner)">Delete</button>
+                                </td>
                             </tr>
                         </t>
                     </tbody>
