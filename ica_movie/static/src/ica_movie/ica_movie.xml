@@ -5,7 +5,12 @@
             <h1 class="mt-5 mb-5">Welcome From Movies!</h1>
             <div class="d-flex justify-content-between mb-2 mt-2">
                 <input t-ref="name" type="text" class="form-control" t-on-keyup="(e)=>this.searchPartners(e)"/>
-                <button class="btn btn-primary oi oi-search" t-on-click="searchPartners"/>
+                <button class="btn btn-primary oi oi-search mx-2" t-on-click="searchPartners"/>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary mx-2" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">
+                  New
+                </button>
             </div>
             <div style="max-height: 500px; overflow-y: auto;">
                 <table class="table">
@@ -47,7 +52,9 @@
                                     </t>
                                 </td>
                                 <td>
-                                    <button class="btn btn-warning m-2" t-on-click="()=>this.updatePartner(partner)">Update</button>
+                                    <button class="btn btn-warning m-2" t-on-click="()=>this.updatePartner(partner)"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal">Update</button>
                                     <button class="btn btn-danger m-2" t-on-click="()=>this.deletePartner(partner)">Delete</button>
                                 </td>
                             </tr>
@@ -56,7 +63,29 @@
                 </table>
             </div>
 
-
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">New</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                    <div class="modal-body">
+                    <div class="container">
+                        <input type="text" class="form-control m-2 " placeholder="Name" t-model="state.partner.name"/>
+                        <input type="text" class="form-control m-2 " placeholder="Email"  t-model="state.partner.email"/>
+                        <input type="text" class="form-control m-2 " placeholder="Phone" t-model="state.partner.phone"/>
+                    </div>
+                  </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary m-2" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary m-2" t-on-click="savePartner">Save</button>
+                  </div>
+                </div>
+              </div>
+            </div>
         </div>
     </t>
 </templates>

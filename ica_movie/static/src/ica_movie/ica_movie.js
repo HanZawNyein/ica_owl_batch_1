@@ -9,6 +9,8 @@ class IcaMovieAction extends Component {
         this.nameRef = useRef('name');
         this.state = useState({
             partners: [],
+            partner: {name: "", email: "", phone: ""},
+            activeId: null
         })
         this.resModel = 'res.partner';
         this.orm = this.env.services.orm;
@@ -19,7 +21,7 @@ class IcaMovieAction extends Component {
 
     async searchPartners(e) {
         if (e.type === 'click' || e.keyCode === 13) {
-            let name = this.nameRef.el.value;
+            let name = this.nameRef.el.value.trim();
             await this.getAllPartners(name);
             this.nameRef.el.value = null;
         }
@@ -32,12 +34,24 @@ class IcaMovieAction extends Component {
     }
 
     async deletePartner(newPartner) {
-        await this.orm.write(this.resModel, [newPartner.id], {active: false});
+        await this.orm.unlink(this.resModel, [newPartner.id]);
         this.state.partners = this.state.partners.filter(partner => partner.id !== newPartner.id);
     }
 
     async updatePartner(newPartner) {
-        console.log(newPartner);
+        this.state.partner = newPartner;
+        this.state.activeId = newPartner.id;
+    }
+
+    async savePartner() {
+        if (this.state.activeId) {
+            await this.orm.write(this.resModel, [this.state.activeId], this.state.partner);
+            this.state.activeId = false;
+        } else {
+            var newPartner = await this.orm.create(this.resModel, [this.state.partner]);
+            this.state.partners.push({...this.state.partner, id: newPartner[0]});
+        }
+        this.state.partner = {};
     }
 
 }
