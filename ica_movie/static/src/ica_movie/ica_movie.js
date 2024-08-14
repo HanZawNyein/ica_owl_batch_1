@@ -142,11 +142,9 @@ export default class IcaMovieAction extends Component {
     }
 
     switchTheme() {
-        if (cookie.get("darkTheme") === 'false') {
-            cookie.set("darkTheme", true);
-        } else {
-            cookie.set("darkTheme", false);
-        }
+        cookie.get("darkTheme") === 'false'
+            ? cookie.set("darkTheme", true)
+            : cookie.set("darkTheme", false);
         this.state.darkTheme = cookie.get('darkTheme') === 'true';
     }
 }
