@@ -1,91 +1,154 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates xml:space="preserve">
     <t t-name="ica_movie.icaMovie">
-        <div class="container">
-            <h1 class="mt-5 mb-5">Welcome From Movies!</h1>
-            <div class="d-flex justify-content-between mb-2 mt-2">
-                <input t-ref="name" type="text" class="form-control" t-on-keyup="(e)=>this.searchPartners(e)"/>
-                <button class="btn btn-primary oi oi-search mx-2" t-on-click="searchPartners"/>
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary mx-2" data-bs-toggle="modal"
-                        data-bs-target="#exampleModal">
-                  New
-                </button>
+        <div t-attf-class="{{state.darkTheme? 'bg-dark text-white':''}}">
+             <Layout display="display">
+            <div class="container mt-5">
+                <h1><t t-esc="state.darkTheme"/></h1>
+                <button class="btn btn-primary" t-on-click="switchTheme">Switch Theme</button>
             </div>
-            <div style="max-height: 500px; overflow-y: auto;">
-                <table class="table">
-                    <thead class="sticky-top bg-dark text-white">
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Phone</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <t t-foreach="state.partners" t-as="partner" t-key="partner.id">
-                            <tr>
-                                <th scope="row"><span t-esc="partner_index+1"/></th>
-                                <td>
-                                    <t t-if="partner.name">
-                                        <span t-esc="partner.name"/>
-                                    </t>
-                                    <t t-else="">
-                                        <span>-</span>
-                                    </t>
-                                </td>
-                                <td>
-                                    <t t-if="partner.phone">
-                                        <span t-esc="partner.phone"/>
-                                    </t>
-                                    <t t-else="">
-                                        <span>-</span>
-                                    </t>
-                                </td>
-                                <td>
-                                    <t t-if="partner.email">
-                                        <span t-esc="partner.email"/>
-                                    </t>
-                                    <t t-else="">
-                                        <span>-</span>
-                                    </t>
-                                </td>
-                                <td>
-                                    <button class="btn btn-warning m-2" t-on-click="()=>this.updatePartner(partner)"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#exampleModal">Update</button>
-                                    <button class="btn btn-danger m-2" t-on-click="()=>this.deletePartner(partner)">Delete</button>
-                                </td>
-                            </tr>
-                        </t>
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                 aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">New</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                    <div class="modal-body">
+            <div class="container mt-5">
+                <Notebook orientation="'horizontal'">
+                  <t t-set-slot="page_1" title="'Movies'" isVisible="true">
                     <div class="container">
-                        <input type="text" class="form-control m-2 " placeholder="Name" t-model="state.partner.name"/>
-                        <input type="text" class="form-control m-2 " placeholder="Email"  t-model="state.partner.email"/>
-                        <input type="text" class="form-control m-2 " placeholder="Phone" t-model="state.partner.phone"/>
-                    </div>
-                  </div>
-                    <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary m-2" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary m-2" t-on-click="savePartner">Save</button>
-                  </div>
-                </div>
-              </div>
+                                    <h1 class="mt-5 mb-5">Welcome From Movies!</h1>
+                        <div class="d-flex justify-content-between mb-2 mt-2">
+                                        <input t-ref="name" type="text" class="form-control"
+                                               t-on-keyup="(e)=>this.searchPartners(e)"/>
+                            <button class="btn btn-primary oi oi-search mx-2" t-on-click="searchPartners"/>
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary mx-2" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal">
+                                          New
+                                        </button>
+                                    </div>
+                        <div style="max-height: 500px; overflow-y: auto;">
+                                        <table class="table">
+                                            <thead class="sticky-top bg-dark text-white">
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Name</th>
+                                                    <th scope="col">Phone</th>
+                                                    <th scope="col">Email</th>
+                                                    <th scope="col">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <t t-foreach="state.partners" t-as="partner" t-key="partner.id">
+                                                    <tr>
+                                                        <th scope="row"><span t-esc="partner_index+1"/></th>
+                                                        <td>
+                                                            <t t-if="partner.name">
+                                                                <span t-esc="partner.name"/>
+                                                            </t>
+                                                            <t t-else="">
+                                                                <span>-</span>
+                                                            </t>
+                                                        </td>
+                                                        <td>
+                                                            <t t-if="partner.phone">
+                                                                <span t-esc="partner.phone"/>
+                                                            </t>
+                                                            <t t-else="">
+                                                                <span>-</span>
+                                                            </t>
+                                                        </td>
+                                                        <td>
+                                                            <t t-if="partner.email">
+                                                                <span t-esc="partner.email"/>
+                                                            </t>
+                                                            <t t-else="">
+                                                                <span>-</span>
+                                                            </t>
+                                                        </td>
+                                                        <td>
+                                                            <button class="btn btn-warning m-2"
+                                                                    t-on-click="()=>this.updatePartner(partner)"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#exampleModal">Update</button>
+                                                            <button class="btn btn-danger m-2"
+                                                                    t-on-click="()=>this.deletePartner(partner)">Delete</button>
+                                                            <button class="btn btn-primary m-2"
+                                                                    t-on-click="()=>this.callOrmMethod(partner)">Call Method</button>
+                                                        </td>
+                                                    </tr>
+                                                </t>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                             aria-hidden="true">
+                                      <div class="modal-dialog">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">New</h5>
+                                              <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                      aria-label="Close"></button>
+                                          </div>
+                                            <div class="modal-body">
+                                            <div class="container">
+                                                <input type="text" class="form-control m-2 " placeholder="Name"
+                                                       t-model="state.partner.name"/>
+                                                <input type="text" class="form-control m-2 " placeholder="Email"
+                                                       t-model="state.partner.email"/>
+                                                <input type="text" class="form-control m-2 " placeholder="Phone"
+                                                       t-model="state.partner.phone"/>
+                                            </div>
+                                          </div>
+                                            <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary m-2" data-bs-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary m-2"
+                                                        data-bs-dismiss="modal"
+                                                        t-on-click="savePartner">Save</button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                </div>
+                  </t>
+                    <t t-set-slot="page_2" title="'RPC Service'" isVisible="true">
+                        <button class="btn btn-outline-primary"
+                                t-on-click="callingRPCService">RPC Services</button>
+                  </t>
+                    <t t-set-slot="page_3" title="'HTTP Service'" isVisible="true">
+                        <button class="m-5 btn btn-outline-primary"
+                                t-on-click="getTodoList">HTTP Services</button>
+                        <div style="max-height: 500px; overflow-y: auto;">
+                                        <table class="table">
+                                            <thead class="sticky-top bg-dark text-white">
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Title</th>
+                                                    <th scope="col">Completed</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <t t-foreach="state.todos" t-as="todo" t-key="todo.id">
+                                                    <tr>
+                                                        <th scope="row"><span t-esc="todo_index+1"/></th>
+                                                        <td>
+                                                            <t t-if="todo.title">
+                                                                <span t-esc="todo.title"/>
+                                                            </t>
+                                                            <t t-else="">
+                                                                <span>-</span>
+                                                            </t>
+                                                        </td><td>
+                                                            <span t-esc="todo.completed"/>
+                                                        </td>
+
+                                                    </tr>
+                                                </t>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                  </t>
+                </Notebook>
             </div>
+        </Layout>
         </div>
+
     </t>
 </templates>
