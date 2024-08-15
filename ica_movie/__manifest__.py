@@ -1,6 +1,6 @@
 {
     "name": "ICA  Movie",
-    "depends": ["base", "web"],
+    "depends": ["base", "web","mail"],
     "license": "LGPL-3",
     "data": [
         "views/ica_movie_client_action.xml",

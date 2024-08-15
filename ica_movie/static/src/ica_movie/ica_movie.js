@@ -7,6 +7,9 @@ import {Layout} from "@web/search/layout";
 import {Notebook} from "@web/core/notebook/notebook";
 import {useService} from "@web/core/utils/hooks";
 import {cookie} from "@web/core/browser/cookie";
+import {browser} from "@web/core/browser/browser";
+import {routeToUrl} from "@web/core/browser/router_service";
+import {useAutofocus} from "@web/core/utils/hooks";
 
 
 export default class IcaMovieAction extends Component {
@@ -14,9 +17,11 @@ export default class IcaMovieAction extends Component {
     static components = {Layout, Notebook};
 
     setup() {
-        this.nameRef = useRef('name');
+        this.nameRef = useAutofocus({refName: 'name'});
+        this.inputRef = useRef('input-box');
+        // #useRef('name');
         this.display = {
-            controlPanel: {},
+            controlPanel: {topRight: true},
         }
         this.state = useState({
             partners: [],
@@ -24,19 +29,43 @@ export default class IcaMovieAction extends Component {
             activeId: null,
             todos: [],
             darkTheme: false,
+            image: null,
+            messages: []
         })
         this.resModel = 'res.partner';
         this.orm = this.env.services.orm;
         this.dialog = this.env.services.dialog;
         this.effectService = this.env.services.effect;
         this.httpService = this.env.services.http;
+        this.userService = this.env.services.user;
+        this.busService = this.env.services.bus_service;
+        this.rpcService = this.env.services.rpc;
+        this.busService.addChannel('ica-movie-channel');
+        this.busService.subscribe('ica-movie-channel/sending-message', payload => {
+            this.state.messages.push(payload.message);
+        });
+        // this.busService.addEventListener('notification',payload=>{
+        //     console.log(payload);
+        // });
         // this.cookieService = useService("cookie");
         onWillStart(async () => {
             await this.getAllPartners();
             this.changeTitle();
             // console.log(cookie.get('darkTheme'));
             this.state.darkTheme = cookie.get('darkTheme') === 'true';
+            this.getUser();
         })
+    }
+
+    async sendMessage() {
+        var message = this.inputRef.el.value;
+        console.log(message);
+        // console.log(this.busService)
+        await this.rpcService("/ica/send-bus", {
+            "message": message
+        });
+        this.inputRef.el.value = '';
+        // this.state.messages.push("Hello")
     }
 
     async searchPartners(e) {
@@ -147,6 +176,32 @@ export default class IcaMovieAction extends Component {
             : cookie.set("darkTheme", false);
         this.state.darkTheme = cookie.get('darkTheme') === 'true';
     }
+
+    getUser() {
+        console.log(this.userService)
+        this.state.image = `/web/image?model=res.partner&id=${this.userService.partnerId}&field=avatar_128&unique=1723729851000`;
+    }
+
+    changeRouter() {
+        this.routerService = this.env.services.router;
+        const {search} = this.routerService.current;
+        search.debug = !search.debug;
+        search.darkTheme = !search.darkTheme
+        // console.log(this.routerService.current)
+        browser.location.href = browser.location.origin +
+            routeToUrl(this.routerService.current);
+    }
+
+    getCompany() {
+        this.companyService = this.env.services.company;
+        // console.log(this.companyService.currentCompany)
+        // console.log(this.companyService.currency)
+        // console.log(this.display.controlPanel.topRight)
+        this.display.controlPanel.topRight = false;
+        // console.log(this.display.controlPanel.topRight)
+    }
+
+
 }
 
 
