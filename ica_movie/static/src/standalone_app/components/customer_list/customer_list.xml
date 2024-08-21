@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="ica_movie.CustomerList">
+        <t t-set="partner" t-value="props.partner"/>
+        <tr>
+            <th scope="row"><span t-esc="props.index"/></th>
+            <td>
+                <t t-if="partner.imageURL">
+
+                   <img t-att-src="partner.imageURL"/>
+<!--                   <img t-attf-src="/web/image/res.partner/{{partner.id}}/avatar_128"/>-->
+                </t>
+                <t t-else="">
+                    <span>-</span>
+                </t>
+            </td>
+            <td>
+                <t t-if="partner.name">
+                    <span t-esc="partner.name"/>
+                </t>
+                <t t-else="">
+                    <span>-</span>
+                </t>
+            </td>
+
+            <td>
+                <t t-if="partner.email">
+                    <span t-esc="partner.email"/>
+                </t>
+                <t t-else="">
+                    <span>-</span>
+                </t>
+            </td>
+        </tr>
+    </t>
+</templates>

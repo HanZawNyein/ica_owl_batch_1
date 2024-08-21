@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="ica_movie.Customers">
+        <div class="container mt-5 mb-2 d-flex justify-content-between">
+            <t t-esc="state.view"/>
+            <button class="btn bg-success text-white" t-on-click="switchView">
+                <i t-if="state.view === 'list'" class="oi oi-view-list"/>
+                <i t-else="state.view === 'grid'" class="oi oi-view-kanban"/>
+            </button>
+        </div>
+        <t t-component="getComponent()" partners="state.partners"/>
+
+<!--        <ListViewComponent partners="state.partners" t-if="state.view === 'list'"/>-->
+<!--        <GridViewComponent partners="state.partners" t-else=""/>-->
+    </t>
+        </templates>

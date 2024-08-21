@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="ica_movie.ListViewComponent">
+<!--         partners="props.partners"-->
+<!--        <ScrollableComponent class="'bg-danger'">-->
+        <ScrollableComponent>
+<!--            <t t-set-slot="title">-->
+<!--                <h1>List View</h1>-->
+<!--            </t>-->
+
+            <table class="table">
+                <thead class="sticky-top bg-dark text-white">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-foreach="props.partners" t-as="partner" t-key="partner.id">
+                        <CustomerList partner="partner" index="partner_index+1"/>
+                    </t>
+                </tbody>
+            </table>
+        </ScrollableComponent>
+    </t>
+</templates>

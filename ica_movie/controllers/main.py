@@ -16,3 +16,12 @@ class MainController(http.Controller):
             'ica-movie-channel',
             'ica-movie-channel/sending-message', kw)
         return True
+
+    @http.route("/ica-movie/standalone_app", auth="public")
+    def standalone_app(self):
+        return request.render(
+            'ica_movie.standalone_app',
+            {
+                'session_info': request.env['ir.http'].get_frontend_session_info(),
+            }
+        )

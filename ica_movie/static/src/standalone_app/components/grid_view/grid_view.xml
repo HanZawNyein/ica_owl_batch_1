@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="ica_movie.GridViewComponent">
+
+<!--        <ScrollableComponent  class="'bg-warning'">-->
+        <ScrollableComponent>
+            <t t-set-slot="title">
+                <h1>GridView</h1>
+            </t>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <t t-foreach="props.partners" t-as="partner" t-key="partner.id">
+                  <div class="col">
+                    <div class="card h-100">
+                      <img t-att-src="partner.imageURL" class="card-img-top" t-att-alt="partner.id"/>
+                        <div class="card-body">
+                        <h5 class="card-title"><t t-esc="partner.name"/></h5>
+                            <p class="card-text">
+                                <t t-esc="partner.email"/>
+                            </p>
+                      </div>
+                    </div>
+                  </div>
+                </t>
+            </div>
+
+        </ScrollableComponent>
+    </t>
+</templates>
