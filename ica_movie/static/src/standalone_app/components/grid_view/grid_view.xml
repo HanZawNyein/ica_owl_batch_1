@@ -4,9 +4,7 @@
 
 <!--        <ScrollableComponent  class="'bg-warning'">-->
         <ScrollableComponent>
-            <t t-set-slot="title">
-                <h1>GridView</h1>
-            </t>
+            <t t-set-slot="title"/>
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 <t t-foreach="props.partners" t-as="partner" t-key="partner.id">
                   <div class="col">

@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
     <t t-name="ica_movie.Customers">
-        <div class="container mt-5 mb-2 d-flex justify-content-between">
-            <t t-esc="state.view"/>
-            <button class="btn bg-success text-white" t-on-click="switchView">
-                <i t-if="state.view === 'list'" class="oi oi-view-list"/>
-                <i t-else="state.view === 'grid'" class="oi oi-view-kanban"/>
+        <div class="mx-5 mt-5 mb-2 d-flex justify-content-end">
+<!--            <t t-esc="state.view"/>-->
+            <!--             t-if="state.view === 'list'"-->
+            <!--            t-else="state.view === 'grid'"-->
+            <!--            t-attf-class="badge rounded-pill o_tag o_tag_color_#{tag.color} d-inline-block"-->
+            <button t-attf-class="btn bg-success text-white mx-2 #{state.view ==='list'?'disabled':''}"
+                    t-on-click="switchView">
+                <i class="oi oi-view-list"/>
             </button>
+            <button t-attf-class="#{state.view ==='grid'?'disabled':''}"
+                    class="btn bg-success text-white"
+                    t-on-click="switchView">
+                <i class="oi oi-view-kanban"/>
+            </button>
+
         </div>
         <t t-component="getComponent()" partners="state.partners"/>
 
-<!--        <ListViewComponent partners="state.partners" t-if="state.view === 'list'"/>-->
-<!--        <GridViewComponent partners="state.partners" t-else=""/>-->
+        <!--        <ListViewComponent partners="state.partners" t-if="state.view === 'list'"/>-->
+        <!--        <GridViewComponent partners="state.partners" t-else=""/>-->
     </t>
         </templates>
