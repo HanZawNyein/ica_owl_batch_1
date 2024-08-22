@@ -4,6 +4,7 @@ import {CustomerList} from "../customer_list/customer_list";
 import {ScrollableComponent} from "../scrollable_component/scrollable_component";
 import {ListViewComponent} from "../list_view/list_view";
 import {GridViewComponent} from "../grid_view/grid_view";
+import { registry } from "@web/core/registry";
 
 const VIEW = {
     listView: "list",
@@ -44,3 +45,5 @@ export class Customers extends Component {
         })
     }
 }
+
+registry.category('ica.movie').add('customerScreen',Customers)
