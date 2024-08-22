@@ -23,5 +23,6 @@ class MainController(http.Controller):
             'ica_movie.standalone_app',
             {
                 'session_info': request.env['ir.http'].get_frontend_session_info(),
+                # 'session_info': request.env['ir.http'].get_session_info(),
             }
         )

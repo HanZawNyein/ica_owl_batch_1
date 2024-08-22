@@ -1,9 +1,10 @@
 /** @odoo-module */
-import {Component, useState} from "@odoo/owl";
+import {Component, useState, onWillStart} from "@odoo/owl";
 import {Customers} from "./components/customers/customers";
 import {Navbar} from "./components/navbar/navbar";
 import {SaleOrders} from "./components/sale_orders/sale_orders";
 import {registry} from "@web/core/registry";
+import {loadBundle, loadCSS, loadJS} from "@web/core/assets";
 
 
 export class Root extends Component {
@@ -15,6 +16,13 @@ export class Root extends Component {
         this.state = useState({
             mainScreen: 'saleOrderScreen',
         })
+
+        onWillStart(async () => {
+            console.log("Hello onWillStart.")
+            // await loadBundle('ica_movie.custom_assets')
+            // await loadCSS("https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css");
+            // await loadJS("https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.js");
+        });
     }
 
     switchScreen(name) {

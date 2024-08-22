@@ -1,12 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
     <t t-name="ica_movie.Root">
+
 <!--        <Navbar/>-->
         <Navbar switchScreen.bind="switchScreen" mainScreen="state.mainScreen"/>
-        <div class="container">
-            <button t-on-click="()=>this.switchScreen('customerScreen')" class="btn btn-primary">Customer</button>
-            <button t-on-click="()=>this.switchScreen('saleOrderScreen')" class="btn btn-primary">SaleOrders</button>
+        <t t-call-assets="ica_movie.custom_assets"/>
+
+        <div class="container mt-5">
+            <div class="buttons">
+              <button class="button is-primary">Primary</button>
+                <button class="button is-link">Link</button>
+            </div>
+
+            <div class="buttons">
+              <button class="button is-info">Info</button>
+                <button class="button is-success">Success</button>
+                <button class="button is-warning">Warning</button>
+                <button class="button is-danger">Danger</button>
+            </div>
         </div>
+
+
+        <!--        <div class="container">-->
+        <!--            <button t-on-click="()=>this.switchScreen('customerScreen')" class="btn btn-primary">Customer</button>-->
+        <!--            <button t-on-click="()=>this.switchScreen('saleOrderScreen')" class="btn btn-primary">SaleOrders</button>-->
+        <!--        </div>-->
 
         <t t-component="getComponent()"/>
         <!--        <Customers/>-->

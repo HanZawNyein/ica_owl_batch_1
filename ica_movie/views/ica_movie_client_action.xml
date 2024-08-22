@@ -4,9 +4,16 @@
         <field name="name">Movies</field>
         <field name="tag">ica_movie.movieAction</field>
     </record>
-    <!-- This Menu Item will appear in the Upper bar, That's why It needs NO parent or action -->
-    <menuitem id="ica_movie_root" name="ICA" sequence="0">
+
+    <record id="ica_standalone_action" model="ir.actions.act_url">
+        <field name="name">Standalone</field>
+        <field name="url">/ica-movie/standalone_app</field>
+    </record>
+
+<!--     This Menu Item will appear in the Upper bar, That's why It needs NO parent or action -->
+    <menuitem id="ica_movie_root" name="ICA">
         <!-- This Menu Item must have a parent and an action -->
         <menuitem id="movie_category" name="Movie" action="ica_movie_action" sequence="0"/>
+        <menuitem id="standalone_category" name="Standalone" action="ica_standalone_action" sequence="1"/>
     </menuitem>
 </odoo>

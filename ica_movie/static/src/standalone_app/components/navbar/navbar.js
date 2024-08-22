@@ -13,9 +13,9 @@ export class Navbar extends Component {
     //
     // }
 
-    switchCustomersScreen(){
-        console.log("Hello")
-        console.log(this.props)
-        // this.props.switchScreen('customerScreen')
-    }
+    // switchCustomersScreen(){
+    //     console.log("Hello")
+    //     console.log(this.props)
+    //     // this.props.switchScreen('customerScreen')
+    // }
 }
