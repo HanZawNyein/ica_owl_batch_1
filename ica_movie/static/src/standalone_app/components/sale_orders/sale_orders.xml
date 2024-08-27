@@ -3,6 +3,11 @@
     <t t-name="ica_movie.SaleOrders">
         <div class="container mt-5">
             <h1>Hello Sale Orders</h1>
+            <div class="container m-5">
+                <h1><t  t-esc="state.translateText"/></h1>
+                <button t-on-click="getClick">Hello</button>
+                <button>Hello</button>
+            </div>
         </div>
     </t>
 </templates>

@@ -37,8 +37,8 @@
                     <div class="container">
                                     <h1 class="mt-5 mb-5">Welcome From Movies!</h1>
                         <div class="d-flex justify-content-between mb-2 mt-2">
-                            <input t-ref="name" type="text" class="form-control"
-                                   t-on-keyup="(e)=>this.searchPartners(e)"/>
+<!--                            <input t-ref="name" type="text" class="form-control" t-on-keyup="(e)=>this.searchPartners(e)"/>-->
+<!--                            <input t-ref="name" type="text" class="form-control" t-on-key/>-->
                             <button class="btn btn-primary oi oi-search mx-2" t-on-click="searchPartners"/>
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary mx-2" data-bs-toggle="modal"
