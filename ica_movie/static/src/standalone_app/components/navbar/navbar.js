@@ -5,13 +5,9 @@ export class Navbar extends Component {
     static template = "ica_movie.Navbar";
     static props = {};
 
-    // setup(){
-    //     console.log(this.env)
-    //     // useSubEnv({
-    //     //
-    //     // })
-    //
-    // }
+    setup(){
+        console.log(this.env)
+    }
 
     // switchCustomersScreen(){
     //     console.log("Hello")

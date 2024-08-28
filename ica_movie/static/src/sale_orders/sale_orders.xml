@@ -9,5 +9,13 @@
                 <button>Hello</button>
             </div>
         </div>
+        <t t-call="ica_movie.so_sub_temp">
+            <t t-set="translateText" t-value="state.translateText"/>
+        </t>
+    </t>
+
+    <t t-name="ica_movie.so_sub_temp">
+        <h1>Hello</h1>
+        <h1><t  t-esc="translateText"/></h1>
     </t>
 </templates>

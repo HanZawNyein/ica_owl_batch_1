@@ -1,7 +1,6 @@
 /** @odoo-module */
 import {Component, onWillStart, useState} from "@odoo/owl";
 import {registry} from "@web/core/registry";
-import {_t} from "@web/core/l10n/translation";
 
 export class SaleOrders extends Component {
     static template = "ica_movie.SaleOrders";
@@ -9,7 +8,7 @@ export class SaleOrders extends Component {
 
     setup() {
         this.state = useState({
-            translateText: _t("ICA"),
+            translateText: "ICA",
         })
     }
 

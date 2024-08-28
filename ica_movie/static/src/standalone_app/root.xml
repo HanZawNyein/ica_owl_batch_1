@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
     <t t-name="ica_movie.Root">
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <!--        <Navbar/>-->
+
         <Navbar switchScreen.bind="switchScreen" mainScreen="state.mainScreen"/>
         <t t-call-assets="ica_movie.custom_assets"/>
 
-        <div class="container mt-5">
-            <div class="buttons">
-              <button class="button is-primary">Primary</button>
-                <button class="button is-link">Link</button>
-            </div>
+<!--        <div class="container mt-5">-->
+<!--            <div class="buttons">-->
+<!--              <button class="button is-primary">Primary</button>-->
+<!--                <button class="button is-link">Link</button>-->
+<!--            </div>-->
 
-            <div class="buttons">
-              <button class="button is-info">Info</button>
-                <button class="button is-success">Success</button>
-                <button class="button is-warning">Warning</button>
-                <button class="button is-danger">Danger</button>
-            </div>
-        </div>
+<!--            <div class="buttons">-->
+<!--              <button class="button is-info">Info</button>-->
+<!--                <button class="button is-success">Success</button>-->
+<!--                <button class="button is-warning">Warning</button>-->
+<!--                <button class="button is-danger">Danger</button>-->
+<!--            </div>-->
+<!--        </div>-->
 
 
         <!--        <div class="container">-->

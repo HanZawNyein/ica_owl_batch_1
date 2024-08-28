@@ -19,10 +19,10 @@ class MainController(http.Controller):
 
     @http.route("/ica-movie/standalone_app", auth="public")
     def standalone_app(self, **kw):
-        # get_frontend_session_info: dict = request.env['ir.http'].get_frontend_session_info()
-        data = {
-            'session_info': {'user_context': {'lang': 'my_MM', }},
-        }
+        get_frontend_session_info: dict = request.env['ir.http'].session_info()
+        # data = {
+        #     'session_info': {'user_context': {'lang': 'my_MM', }},
+        # }
         return request.render(
-            'ica_movie.standalone_app', data
+            'ica_movie.standalone_app', get_frontend_session_info
         )

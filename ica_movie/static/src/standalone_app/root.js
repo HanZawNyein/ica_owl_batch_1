@@ -1,28 +1,24 @@
 /** @odoo-module */
-import {Component, useState, onWillStart} from "@odoo/owl";
-import {Customers} from "./components/customers/customers";
+import {Component, useState, onWillStart, useSubEnv, useChildSubEnv, useEnv} from "@odoo/owl";
 import {Navbar} from "./components/navbar/navbar";
-import {SaleOrders} from "./components/sale_orders/sale_orders";
 import {registry} from "@web/core/registry";
-import {loadBundle, loadCSS, loadJS} from "@web/core/assets";
+import {createTodoStore, useStore} from "./todo_app/todo";
 
 
 export class Root extends Component {
     static template = "ica_movie.Root";
-    static components = {Customers, Navbar, SaleOrders};
+    static components = {Navbar};
     static props = {};
 
     setup() {
         this.state = useState({
-            mainScreen: 'saleOrderScreen',
+            mainScreen: 'todo_list',
         })
-
-        onWillStart(async () => {
-            console.log("Hello onWillStart.")
-            // await loadBundle('ica_movie.custom_assets')
-            // await loadCSS("https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css");
-            // await loadJS("https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.js");
-        });
+        // <= 30
+        useSubEnv({
+            switchScreen: this.switchScreen.bind(this),
+            store: createTodoStore()
+        })
     }
 
     switchScreen(name) {

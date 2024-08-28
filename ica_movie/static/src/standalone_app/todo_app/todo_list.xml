@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="ica_movie.TodoList">
+        <h1>Todo List</h1>
+        <div class="m-3 d-flex justify-content-lg-between">
+            <input t-ref="title" type="text" placeholder="Title" class="form-control"/>
+            <button t-on-click="addTask" class="btn btn-warning">Add Task</button>
+        </div>
+        <t t-foreach="env.store.todos" t-as="todo" t-key="todo_index">
+            <t t-call="ica_movie.TodoItem">
+                <t t-set="todo" t-value="todo"/>
+<!--                <t t-set="deleteTask" t-value="this.store.deleteTask"/>-->
+            </t>
+        </t>
+    </t>
+
+    <t t-name="ica_movie.TodoItem">
+        <link rel="stylesheet" href="/ica_movie/static/src/standalone_app/todo_app/style.scss"/>
+         <div class="card">
+
+                <h1 class="card-title">
+                    <div class="d-flex justify-content-lg-between">
+                        <div>
+                            <t t-out="todo.name"/>
+                        </div>
+                        <div>
+                            <button class="btn btn-warning m-2">Update</button>
+                            <button class="btn bg-danger m-2" t-on-click="()=>this.store.deleteTask(todo.id)">Delete</button>
+                        </div>
+                    </div>
+                </h1>
+         </div>
+    </t>
+</templates>

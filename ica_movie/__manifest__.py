@@ -20,10 +20,10 @@
             'web/static/lib/odoo_ui_icons/*',
             'ica_movie/static/src/standalone_app/**/*.js',
             'ica_movie/static/src/standalone_app/**/*.xml',
-            # 'ica_movie/static/src/standalone_app/**/*.scss',
-        ],
-        "ica_movie.custom_assets": [
             'ica_movie/static/src/standalone_app/**/*.scss',
         ],
+        # "ica_movie.custom_assets": [
+        #     'ica_movie/static/src/standalone_app/**/*.scss',
+        # ],
     }
 }
